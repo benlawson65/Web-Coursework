@@ -1,0 +1,22 @@
+﻿@model IEnumerable<NETboard.Models.Comment>
+
+
+@foreach (var item in Model)
+{
+
+    <h2>
+        @Html.DisplayFor(modelItem => item.commentContent)
+    </h2>
+        <p>
+            @Html.DisplayFor(modelItem => item.timeStamp)
+        </p>
+        <p>
+            @Html.DisplayFor(modelItem => item.userName)
+        </p>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+
+        </p>
+
+}

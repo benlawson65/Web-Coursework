@@ -1,0 +1,39 @@
+﻿@model IEnumerable<NETboard.Models.Announcement>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+
+
+@foreach (var item in Model) {
+    
+        <h2>
+            @Html.DisplayFor(modelItem => item.announcementTitle)
+        </h2>
+        <p>
+            @Html.DisplayFor(modelItem => item.announcementContent)
+        </p>
+        <p>
+            @Html.DisplayFor(modelItem => item.annoucmementTimeStamp)
+        </p>
+        <p>
+            @Html.DisplayFor(modelItem => item.staffName)
+        </p>
+        <p>
+            @Html.DisplayFor(modelItem => item.staffID)
+        </p>
+        <p>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+            
+        </p>
+        @Html.Partial("_Comment")
+
+}
