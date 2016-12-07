@@ -191,6 +191,22 @@
     <Compile Include="Migrations\201612061824596_DB3net.Designer.cs">
       <DependentUpon>201612061824596_DB3net.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612071503505_db.cs" />
+    <Compile Include="Migrations\201612071503505_db.Designer.cs">
+      <DependentUpon>201612071503505_db.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612071551572_db1.cs" />
+    <Compile Include="Migrations\201612071551572_db1.Designer.cs">
+      <DependentUpon>201612071551572_db1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612071603228_dbWithUser.cs" />
+    <Compile Include="Migrations\201612071603228_dbWithUser.Designer.cs">
+      <DependentUpon>201612071603228_dbWithUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612071628512_dbWithUsers.cs" />
+    <Compile Include="Migrations\201612071628512_dbWithUsers.Designer.cs">
+      <DependentUpon>201612071628512_dbWithUsers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
@@ -203,6 +219,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="CustomScripts\BuildAnnoucements.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -213,6 +230,8 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -266,6 +285,7 @@
     <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Comments\Index.cshtml" />
     <Content Include="Views\Announcements\_Comment.cshtml" />
+    <Content Include="Views\Announcements\_Announcement.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -290,6 +310,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612061824596_DB3net.resx">
       <DependentUpon>201612061824596_DB3net.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612071503505_db.resx">
+      <DependentUpon>201612071503505_db.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612071551572_db1.resx">
+      <DependentUpon>201612071551572_db1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612071603228_dbWithUser.resx">
+      <DependentUpon>201612071603228_dbWithUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612071628512_dbWithUsers.resx">
+      <DependentUpon>201612071628512_dbWithUsers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -25,6 +25,7 @@ namespace NETboard.Models
         {
         }
         
+      //  public DbSet<Announcement> Announcements { get; set; }
 
         public static ApplicationDbContext Create()
         {

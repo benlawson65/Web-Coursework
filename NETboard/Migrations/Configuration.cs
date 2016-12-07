@@ -4,6 +4,9 @@ namespace NETboard.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.EntityFramework;
+    using Models;
 
     internal sealed class Configuration : DbMigrationsConfiguration<NETboard.Models.ApplicationDbContext>
     {
@@ -27,6 +30,14 @@ namespace NETboard.Migrations
             //      new Person { FullName = "Rowan Miller" }
             //    );
             //
+
+            //Seeding users
+            var userBen = new ApplicationUser { UserName = "Ben@hotmail.co.uk" };
+            var userBob = new ApplicationUser { UserName = "Bob@hotmail.co.uk" }; 
+            var userManager = new UserManager<ApplicationUser>(
+                    new UserStore<ApplicationUser>(context));
+            userManager.Create(userBen, "password");
+            userManager.Create(userBob, "password");
         }
     }
 }

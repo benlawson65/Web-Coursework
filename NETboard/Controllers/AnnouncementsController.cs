@@ -20,6 +20,12 @@ namespace NETboard.Controllers
             return View(db.Announcements.ToList());
         }
 
+        public ActionResult BuildAnnouncements()
+        {
+
+            return PartialView("_Annoucement",db.Announcements.ToList());
+        }
+
         // GET: Announcements/Details/5
         public ActionResult Details(int? id)
         {
