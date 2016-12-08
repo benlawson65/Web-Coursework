@@ -1,11 +1,47 @@
-﻿@model IEnumerable<NETboard.Models.Announcement>
+﻿@model NETboard.Models.Announcement
 
 @{
     ViewBag.Title = "Index";
 }
 
 <!--<h2>Index</h2>-->
-<h2>  </h2>
+
+
+<!--partial view to show form to create new announcement-->
+<div id="announcementCreate">
+    @using (Ajax.BeginForm("AjaxCreate", "Announcements", new AjaxOptions
+    {
+        InsertionMode = InsertionMode.Replace,
+        HttpMethod = "POST",
+        UpdateTargetId = "announcementsDiv"
+    }))
+    {
+        @Html.AntiForgeryToken()
+        <!--Announcement title input box-->
+        <div class="form-group">
+            @Html.LabelFor(model => model.announcementTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.announcementTitle, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.announcementTitle, "", new { @class = "text-danger" })
+            </div>
+        <!--Announcement content input box-->
+        <!--<div class="form-group">-->
+            @Html.LabelFor(model => model.announcementContent, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.announcementContent, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.announcementContent, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <!--submit announcement button-->
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+
+    }
+</div>
 
 <!--partial view with announcements will be loaded in this div-->>
 <div id="announcementsDiv"></div>
@@ -13,5 +49,6 @@
 <!--call javascript scripts that will place announcements in the div above-->
 @section Scripts {
    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-   <script src="~/CustomScripts/BuildAnnoucements.js"></script>
+   <script src="~/CustomScripts/BuildAnnouncements.js"></script>
+    @Scripts.Render("~/bundles/jqueryval")
 }

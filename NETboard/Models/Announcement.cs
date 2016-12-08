@@ -11,9 +11,9 @@ namespace NETboard.Models
         public int Id { get; set; }
         public string announcementTitle { get; set; }
         public string announcementContent { get; set; }
-        public string annoucmementTimeStamp { get; set; }
+        public string announcementTimeStamp { get; set; }
 
-        public string staffName { get; set; }
+        public ApplicationUser staffName { get; set; }
         public int staffID { get; set; }
 
 

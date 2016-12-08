@@ -143,10 +143,14 @@ E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.Init
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.DB1net.resources
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.DB2net.resources
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.DB3net.resources
-E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.csproj.GenerateResource.Cache
-E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.dll
-E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.pdb
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.db.resources
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.db1.resources
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.dbWithUser.resources
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.dbWithUsers.resources
+E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.dbPartialViww.resources
+E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.dbWeeb.resources
+E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.addingUserStuff.resources
+E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.addingCommentsFeature.resources
+E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.csproj.GenerateResource.Cache
+E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.dll
+E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.pdb

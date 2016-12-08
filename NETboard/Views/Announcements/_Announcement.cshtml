@@ -1,33 +1,38 @@
 ﻿@model IEnumerable<NETboard.Models.Announcement>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-
-</p>
 
 
-@foreach (var item in Model)
+
+@foreach (var item in Model.Reverse())
 {
 
     <h2>
         @Html.DisplayFor(modelItem => item.announcementTitle)
     </h2>
         <p>
-            @Html.DisplayFor(modelItem => item.announcementContent)
-        </p>
-        <p>
-            @Html.DisplayFor(modelItem => item.annoucmementTimeStamp)
-        </p>
-        <p>
             @Html.DisplayFor(modelItem => item.staffName)
         </p>
         <p>
-            @Html.DisplayFor(modelItem => item.staffID)
+            @Html.DisplayFor(modelItem => item.announcementContent)
         </p>
+        <p>
+            @Html.DisplayFor(modelItem => item.announcementTimeStamp)
+        </p>
+        
         <p>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id = item.Id })
 
         </p>
+        <p>
+            <div id="commentsDiv"></div>
+            <!--call javascript scripts that will place announcements in the div above-->
+            
+                <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+                <script src="~/CustomScripts/BuildComments.js"></script>
+                <!--Scripts.Render("~/bundles/jqueryval")-->
+            
+        </p>
         <!--AT Html.Partial("_Comment")-->
 }
+

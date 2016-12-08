@@ -17,7 +17,17 @@ namespace NETboard.Controllers
         // GET: Comments
         public ActionResult Index()
         {
-            return View(db.Comments.ToList());
+            return View();// (db.Comments.ToList());
+        }
+
+        public ActionResult BuildComments()
+        {
+            return PartialView("_Comment", db.Comments.ToList());
+        }
+
+        public ActionResult BuildCommentsInput()
+        {
+            return PartialView("_AddComment"); // ("_AddComment", db.Comments.ToList());
         }
 
         // GET: Comments/Details/5
@@ -56,6 +66,21 @@ namespace NETboard.Controllers
             }
 
             return View(comment);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AjaxCreateComment([Bind(Include = "Id,commentContent,timeStamp,userName")] Comment comment)
+        {
+            if (ModelState.IsValid)
+            {
+                comment.timeStamp = DateTime.Now.ToString("h:mm:ss tt");
+                db.Comments.Add(comment);
+                db.SaveChanges();
+                //return RedirectToAction("Index");
+            }
+            return PartialView("_Comment", db.Comments.ToList());
+            
         }
 
         // GET: Comments/Edit/5

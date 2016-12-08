@@ -207,6 +207,22 @@
     <Compile Include="Migrations\201612071628512_dbWithUsers.Designer.cs">
       <DependentUpon>201612071628512_dbWithUsers.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612081211351_dbPartialViww.cs" />
+    <Compile Include="Migrations\201612081211351_dbPartialViww.Designer.cs">
+      <DependentUpon>201612081211351_dbPartialViww.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612081443333_dbWeeb.cs" />
+    <Compile Include="Migrations\201612081443333_dbWeeb.Designer.cs">
+      <DependentUpon>201612081443333_dbWeeb.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612081539547_addingUserStuff.cs" />
+    <Compile Include="Migrations\201612081539547_addingUserStuff.Designer.cs">
+      <DependentUpon>201612081539547_addingUserStuff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612081807244_addingCommentsFeature.cs" />
+    <Compile Include="Migrations\201612081807244_addingCommentsFeature.Designer.cs">
+      <DependentUpon>201612081807244_addingCommentsFeature.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
@@ -219,7 +235,9 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="CustomScripts\BuildAnnoucements.js" />
+    <Content Include="CustomScripts\BuildAnnouncements.js" />
+    <Content Include="CustomScripts\BuildComments.js" />
+    <Content Include="CustomScripts\BuildCommentsInput.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -284,11 +302,13 @@
     <Content Include="Views\Comments\Details.cshtml" />
     <Content Include="Views\Comments\Edit.cshtml" />
     <Content Include="Views\Comments\Index.cshtml" />
-    <Content Include="Views\Announcements\_Comment.cshtml" />
+    <Content Include="Views\Comments\_Comment.cshtml" />
     <Content Include="Views\Announcements\_Announcement.cshtml" />
+    <Content Include="Views\Comments\_AddComment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Migrations\201612081210209_dbW\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -322,6 +342,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612071628512_dbWithUsers.resx">
       <DependentUpon>201612071628512_dbWithUsers.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612081211351_dbPartialViww.resx">
+      <DependentUpon>201612081211351_dbPartialViww.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612081443333_dbWeeb.resx">
+      <DependentUpon>201612081443333_dbWeeb.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612081539547_addingUserStuff.resx">
+      <DependentUpon>201612081539547_addingUserStuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612081807244_addingCommentsFeature.resx">
+      <DependentUpon>201612081807244_addingCommentsFeature.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

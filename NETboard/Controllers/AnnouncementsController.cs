@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using NETboard.Models;
+using Microsoft.AspNet.Identity;
 
 namespace NETboard.Controllers
 {
@@ -17,13 +18,13 @@ namespace NETboard.Controllers
         // GET: Announcements
         public ActionResult Index()
         {
-            return View(db.Announcements.ToList());
+            return View(); //View(db.Announcements.ToList());
         }
 
         public ActionResult BuildAnnouncements()
         {
 
-            return PartialView("_Annoucement",db.Announcements.ToList());
+            return PartialView("_Announcement",db.Announcements.ToList());
         }
 
         // GET: Announcements/Details/5
@@ -62,6 +63,27 @@ namespace NETboard.Controllers
             }
 
             return View(announcement);
+        }
+
+        //used to update the announcements feed when new announcement added from same page
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AjaxCreate([Bind(Include = "Id,announcementTitle,announcementContent")] Announcement announcement)
+        {
+            if (ModelState.IsValid)
+            {
+                announcement.announcementTimeStamp = DateTime.Now.ToString("h:mm:ss tt");
+                string currentUserID = User.Identity.GetUserId();
+                ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserID);
+                announcement.staffName = currentUser;
+                db.Announcements.Add(announcement);
+                db.SaveChanges();
+                //return RedirectToAction("Index");
+            }
+
+            //returning the set of announcements (which is a partial view) with added anouncement
+            return PartialView("_Announcement", db.Announcements.ToList());
+            //.Where(x => x.staffName == currentUser)
         }
 
         // GET: Announcements/Edit/5

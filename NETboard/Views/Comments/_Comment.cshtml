@@ -3,13 +3,12 @@
 
 @foreach (var item in Model)
 {
-
     <h2>
         @Html.DisplayFor(modelItem => item.commentContent)
     </h2>
-        <p>
-            @Html.DisplayFor(modelItem => item.timeStamp)
-        </p>
+    <p>
+        @Html.DisplayFor(modelItem => item.timeStamp)
+    </p>
         <p>
             @Html.DisplayFor(modelItem => item.userName)
         </p>
@@ -18,5 +17,16 @@
             @Html.ActionLink("Delete", "Delete", new { id = item.Id })
 
         </p>
+        <p>
+
+
+            <!--Scripts.Render("~/bundles/jqueryval")-->
+
+        </p>
 
 }
+<div id="addCommentsDiv"></div>
+<!--call javascript scripts that will place announcements in the div above-->
+
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/CustomScripts/BuildCommentsInput.js"></script>
