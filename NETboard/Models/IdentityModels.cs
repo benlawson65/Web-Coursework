@@ -32,8 +32,10 @@ namespace NETboard.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<NETboard.Models.Announcement> Announcements { get; set; }
+        public DbSet<Announcement> Announcements { get; set; }
 
-        public System.Data.Entity.DbSet<NETboard.Models.Comment> Comments { get; set; }
+        public DbSet<Comment> Comments { get; set; }
+
+        public AnnouncementWithItsComments AnnouncementWithItsComments { get; set; }
     }
 }

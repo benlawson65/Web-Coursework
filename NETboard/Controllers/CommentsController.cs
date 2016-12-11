@@ -17,7 +17,7 @@ namespace NETboard.Controllers
         // GET: Comments
         public ActionResult Index()
         {
-            return View();// (db.Comments.ToList());
+            return View(db.Comments.ToList());// (db.Comments.ToList());
         }
 
         public ActionResult BuildComments()

@@ -169,67 +169,21 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AnnouncementsController.cs" />
+    <Compile Include="Controllers\AnnouncementWithItsCommentsController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612061555341_InitialCreate.cs" />
-    <Compile Include="Migrations\201612061555341_InitialCreate.Designer.cs">
-      <DependentUpon>201612061555341_InitialCreate.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612061711549_DB1net.cs" />
-    <Compile Include="Migrations\201612061711549_DB1net.Designer.cs">
-      <DependentUpon>201612061711549_DB1net.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612061759017_DB2net.cs" />
-    <Compile Include="Migrations\201612061759017_DB2net.Designer.cs">
-      <DependentUpon>201612061759017_DB2net.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612061824596_DB3net.cs" />
-    <Compile Include="Migrations\201612061824596_DB3net.Designer.cs">
-      <DependentUpon>201612061824596_DB3net.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612071503505_db.cs" />
-    <Compile Include="Migrations\201612071503505_db.Designer.cs">
-      <DependentUpon>201612071503505_db.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612071551572_db1.cs" />
-    <Compile Include="Migrations\201612071551572_db1.Designer.cs">
-      <DependentUpon>201612071551572_db1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612071603228_dbWithUser.cs" />
-    <Compile Include="Migrations\201612071603228_dbWithUser.Designer.cs">
-      <DependentUpon>201612071603228_dbWithUser.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612071628512_dbWithUsers.cs" />
-    <Compile Include="Migrations\201612071628512_dbWithUsers.Designer.cs">
-      <DependentUpon>201612071628512_dbWithUsers.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612081211351_dbPartialViww.cs" />
-    <Compile Include="Migrations\201612081211351_dbPartialViww.Designer.cs">
-      <DependentUpon>201612081211351_dbPartialViww.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612081443333_dbWeeb.cs" />
-    <Compile Include="Migrations\201612081443333_dbWeeb.Designer.cs">
-      <DependentUpon>201612081443333_dbWeeb.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612081539547_addingUserStuff.cs" />
-    <Compile Include="Migrations\201612081539547_addingUserStuff.Designer.cs">
-      <DependentUpon>201612081539547_addingUserStuff.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612081807244_addingCommentsFeature.cs" />
-    <Compile Include="Migrations\201612081807244_addingCommentsFeature.Designer.cs">
-      <DependentUpon>201612081807244_addingCommentsFeature.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201612111514553_addedCommentList.cs" />
-    <Compile Include="Migrations\201612111514553_addedCommentList.Designer.cs">
-      <DependentUpon>201612111514553_addedCommentList.cs</DependentUpon>
+    <Compile Include="Migrations\201612111936174_InitialCreate.cs" />
+    <Compile Include="Migrations\201612111936174_InitialCreate.Designer.cs">
+      <DependentUpon>201612111936174_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
+    <Compile Include="Models\AnnouncementWithItsComments.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -309,6 +263,11 @@
     <Content Include="Views\Comments\_Comment.cshtml" />
     <Content Include="Views\Announcements\_Announcement.cshtml" />
     <Content Include="Views\Comments\_AddComment.cshtml" />
+    <Content Include="Views\AnnouncementWithItsComments\Create.cshtml" />
+    <Content Include="Views\AnnouncementWithItsComments\Delete.cshtml" />
+    <Content Include="Views\AnnouncementWithItsComments\Details.cshtml" />
+    <Content Include="Views\AnnouncementWithItsComments\Edit.cshtml" />
+    <Content Include="Views\AnnouncementWithItsComments\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -323,44 +282,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612061555341_InitialCreate.resx">
-      <DependentUpon>201612061555341_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612061711549_DB1net.resx">
-      <DependentUpon>201612061711549_DB1net.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612061759017_DB2net.resx">
-      <DependentUpon>201612061759017_DB2net.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612061824596_DB3net.resx">
-      <DependentUpon>201612061824596_DB3net.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612071503505_db.resx">
-      <DependentUpon>201612071503505_db.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612071551572_db1.resx">
-      <DependentUpon>201612071551572_db1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612071603228_dbWithUser.resx">
-      <DependentUpon>201612071603228_dbWithUser.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612071628512_dbWithUsers.resx">
-      <DependentUpon>201612071628512_dbWithUsers.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612081211351_dbPartialViww.resx">
-      <DependentUpon>201612081211351_dbPartialViww.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612081443333_dbWeeb.resx">
-      <DependentUpon>201612081443333_dbWeeb.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612081539547_addingUserStuff.resx">
-      <DependentUpon>201612081539547_addingUserStuff.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612081807244_addingCommentsFeature.resx">
-      <DependentUpon>201612081807244_addingCommentsFeature.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201612111514553_addedCommentList.resx">
-      <DependentUpon>201612111514553_addedCommentList.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201612111936174_InitialCreate.resx">
+      <DependentUpon>201612111936174_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

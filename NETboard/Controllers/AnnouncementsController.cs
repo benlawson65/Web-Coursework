@@ -20,11 +20,41 @@ namespace NETboard.Controllers
         {
             return View(); //View(db.Announcements.ToList());
         }
+        public void InsertsAnnouncements()
+        {
+            AnnouncementWithItsComments link = new AnnouncementWithItsComments();
+            ICollection<Announcement> ann = db.Announcements.ToList();
+            link.AnnouncementsList = new List<Announcement>();
+            foreach (var element in ann)
+            {
+                link.AnnouncementsList.Add(element);
+            }
+            db.AnnouncementWithItsComments = link;
+            db.SaveChanges();
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AjaxInsertComment(int? id, AnnouncementWithItsComments commentInstance)
+        {
+            //finds announcement that comment should be placed on
+            Announcement announcement = db.Announcements.Find(id);
+
+            Comment comment = new Comment();
+            comment.commentContent = commentInstance.CommentModel.commentContent;
+            comment.userName = "something";
+            comment.timeStamp = DateTime.Now.ToString("h:mm:ss tt");
+            announcement.listOfComments.Add(comment);
+            InsertsAnnouncements();
+            db.SaveChanges();
+            //ModelState.Clear();
+
+            return PartialView("_Announcement",db.AnnouncementWithItsComments);
+        }
         public ActionResult BuildAnnouncements()
         {
-
-            return PartialView("_Announcement",db.Announcements.ToList());
+            InsertsAnnouncements();
+            return PartialView("_Announcement",db.AnnouncementWithItsComments);
         }
 
         // GET: Announcements/Details/5
@@ -76,13 +106,14 @@ namespace NETboard.Controllers
                 string currentUserID = User.Identity.GetUserId();
                 ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserID);
                 announcement.staffName = currentUser;
+                announcement.listOfComments = new List<Comment>();
                 db.Announcements.Add(announcement);
                 db.SaveChanges();
                 //return RedirectToAction("Index");
             }
 
             //returning the set of announcements (which is a partial view) with added anouncement
-            return PartialView("_Announcement", db.Announcements.ToList());
+            return BuildAnnouncements();
             //.Where(x => x.staffName == currentUser)
         }
 
