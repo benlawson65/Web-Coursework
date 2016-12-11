@@ -11,7 +11,6 @@ namespace NETboard.Models
         public string commentContent { get; set; }
         public string timeStamp { get; set; }
         public string userName { get; set; }
-        public int announcementID { get; set; }
 
     }
 }

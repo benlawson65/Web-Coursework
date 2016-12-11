@@ -15,6 +15,7 @@ namespace NETboard.Models
 
         public ApplicationUser staffName { get; set; }
         public int staffID { get; set; }
+        public virtual ICollection<Comment> listOfComments { get; set; }
 
 
 
