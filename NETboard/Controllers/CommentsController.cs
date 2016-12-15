@@ -139,6 +139,35 @@ namespace NETboard.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        public void InsertsAnnouncements()
+        {
+            AnnouncementWithItsComments link = new AnnouncementWithItsComments();
+            ICollection<Announcement> ann = db.Announcements.ToList();
+            link.AnnouncementsList = new List<Announcement>();
+            foreach (var element in ann)
+            {
+                link.AnnouncementsList.Add(element);
+            }
+            db.AnnouncementWithItsComments = link;
+            db.SaveChanges();
+        }
+
+        public ActionResult AjaxDeleteComment(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Comment comment = db.Comments.Find(id);
+            if (comment == null)
+            {
+                return HttpNotFound();
+            }
+            db.Comments.Remove(comment);
+            db.SaveChanges();
+            InsertsAnnouncements();
+            return PartialView("_Announcement", db.AnnouncementWithItsComments);
+        }
 
         protected override void Dispose(bool disposing)
         {

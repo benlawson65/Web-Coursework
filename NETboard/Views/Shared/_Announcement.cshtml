@@ -1,0 +1,108 @@
+﻿@model NETboard.Models.AnnouncementWithItsComments
+
+
+
+@foreach (var item in Model.AnnouncementsList.Reverse())
+{
+    <div class="Announcement">
+        <div class="title">
+            <h2>
+                @Html.DisplayFor(modelItem => item.announcementTitle)
+            </h2>
+        </div>
+        <div class="Information">
+
+            <p>
+                @Html.DisplayFor(modelItem => item.staffName)
+            </p>
+            <p>
+                @Html.DisplayFor(modelItem => item.announcementContent)
+            </p>
+            <p>
+                @Html.DisplayFor(modelItem => item.announcementTimeStamp)
+            </p>
+        </div>
+        <div class="Button">
+            <p>
+                @using (Ajax.BeginForm("AjaxDeleteAnnouncement", "Announcements", new { id = item.Id }, new AjaxOptions
+                {
+                    InsertionMode = InsertionMode.Replace,
+                    HttpMethod = "POST",
+                    UpdateTargetId = "announcementsDiv"
+                }))
+                {
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Delete" class="btn btn-default" />
+
+                }
+                
+
+            </p>
+        </div>
+        @using (Ajax.BeginForm("AjaxInsertComment", "Announcements", new { id=item.Id }, new AjaxOptions
+            {
+                InsertionMode = InsertionMode.Replace,
+                HttpMethod = "POST",
+                UpdateTargetId = "announcementsDiv"
+            }))
+            {
+                @Html.AntiForgeryToken()
+
+                        <!--Announcement content input box-->
+                <div class="form-horizontal">
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.CommentModel.commentContent, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.CommentModel.commentContent, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.CommentModel.commentContent, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            }
+        <div class="Comment">
+            <p>
+                @foreach (var comment in item.listOfComments.Reverse())
+                {
+                    <h2>
+                        @Html.DisplayFor(modelItem => comment.commentContent)
+                    </h2>
+                <p>
+                    @Html.DisplayFor(modelItem => comment.timeStamp)
+                </p>
+                    <p>
+                        @Html.DisplayFor(modelItem => comment.userName)
+                    </p>
+                    <p>
+                        @using (Ajax.BeginForm("AjaxDeleteComment", "Announcements", new { id = comment.Id }, new AjaxOptions
+                        {
+                            InsertionMode = InsertionMode.Replace,
+                            HttpMethod = "POST",
+                            UpdateTargetId = "announcementsDiv"
+                        }))
+                        {
+                        @Html.AntiForgeryToken()
+                          <input type="submit" value="Delete" class="btn btn-default" />
+                        
+                        }
+                    </p>
+
+                }
+            </div>
+            <!--call javascript scripts that will place announcements in the div above-->
+            <!--Scripts.Render("~/bundles/jqueryval")-->
+            @*@Html.Partial("_Comment")  *@
+            <!--<div id="addCommentsDiv"></div>-->
+
+            
+        </div>
+
+
+
+        <!--AT Html.Partial("_Comment")-->
+
+}
+
+
+

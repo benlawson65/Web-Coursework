@@ -225,3 +225,4 @@ C:\Users\ben\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.dll
 C:\Users\ben\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.pdb
 C:\Users\ben\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.InitialCreate.resources
 C:\Users\ben\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.csproj.GenerateResource.Cache
+C:\Users\ben\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.test.resources

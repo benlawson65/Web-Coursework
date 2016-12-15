@@ -174,6 +174,64 @@ namespace NETboard.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AjaxDeleteComment(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Comment comment = db.Comments.Find(id);
+            if (comment == null)
+            {
+                return HttpNotFound();
+            }
+            db.Comments.Remove(comment);
+            db.SaveChanges();
+            InsertsAnnouncements();
+
+            db.SaveChanges();
+            return PartialView("_Announcement", db.AnnouncementWithItsComments); ;
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AjaxDeleteAnnouncement(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Announcement announcement = db.Announcements.Find(id);
+            //ICollection<Comment> allComments = db.Comments;
+            
+            //db.SaveChanges();
+
+            //AnnouncementWithItsComments link = new AnnouncementWithItsComments();
+            ICollection<Comment> AllComments = db.Comments.ToList();
+            //link.AnnouncementsList = new List<Announcement>();
+
+            List<Comment> CommentsList = new List<Comment>();
+            foreach (var element in announcement.listOfComments)
+            {
+               //db.Comments.Remove(db.Comments.Find(element.Id));
+                CommentsList.Add(element);
+            }
+
+            
+            foreach (var element1 in CommentsList) {
+                db.Comments.Remove(element1);
+            }
+            
+            db.SaveChanges();
+            db.Announcements.Remove(announcement);
+            
+            db.SaveChanges();
+            InsertsAnnouncements();
+            return PartialView("_Announcement", db.AnnouncementWithItsComments);
+        }
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
