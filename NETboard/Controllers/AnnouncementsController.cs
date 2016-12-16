@@ -118,6 +118,7 @@ namespace NETboard.Controllers
         }
 
         // GET: Announcements/Edit/5
+        [Authorize(Roles = "canEdit")]
         public ActionResult Edit(int? id)
         {
             if (id == null)

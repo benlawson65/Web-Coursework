@@ -54,15 +54,15 @@ namespace NETboard
             //   consumerKey: "",
             //   consumerSecret: "");
 
-            //app.UseFacebookAuthentication(
-            //   appId: "",
-            //   appSecret: "");
+            app.UseFacebookAuthentication(
+               appId: "376193899392910",
+               appSecret: "c5a101f181cf777ba9e90da41b032bdd");
 
-            //app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
-            //{
-            //    ClientId = "",
-            //    ClientSecret = ""
-            //});
+            /*app.UseGoogleAuthentication(new GoogleOAuth2AuthenticationOptions()
+            {
+                ClientId = "630942418429-rrs9s0ian7qd8s9jgcu9urpltne8osd9.apps.googleusercontent.com",
+                ClientSecret = "rkCqodG2_jNWRdKTGs-6do-i"
+            });*/
         }
     }
 }

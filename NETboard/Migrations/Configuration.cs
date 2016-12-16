@@ -32,12 +32,31 @@ namespace NETboard.Migrations
             //
 
             //Seeding users
+            AddUserAndRole(context);
+            
+        }
+
+        bool AddUserAndRole(NETboard.Models.ApplicationDbContext context) {
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+
+            IdentityResult identityRoles = roleManager.Create(new IdentityRole("canEdit"));
+
+            var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
+
+
             var userBen = new ApplicationUser { UserName = "Ben@hotmail.co.uk" };
-            var userBob = new ApplicationUser { UserName = "Bob@hotmail.co.uk" }; 
-            var userManager = new UserManager<ApplicationUser>(
-                    new UserStore<ApplicationUser>(context));
+            var userBobLect = new ApplicationUser { UserName = "BobLecturer@hotmail.co.uk" };
+            var userBob = new ApplicationUser { UserName = "Bob@hotmail.co.uk" };
+
+            identityRoles = userManager.Create(userBobLect, "password");
             userManager.Create(userBen, "password");
             userManager.Create(userBob, "password");
+            userManager.Create(userBob, "password");
+
+            if (identityRoles.Succeeded == false)
+                return identityRoles.Succeeded;
+            identityRoles = userManager.AddToRole(userBobLect.Id, "canEdit");
+            return identityRoles.Succeeded;
         }
     }
 }

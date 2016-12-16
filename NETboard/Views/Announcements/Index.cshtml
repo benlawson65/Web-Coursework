@@ -6,10 +6,12 @@
 
 <!--<h2>Index</h2>-->
 
-
 <!--partial view to show form to create new announcement-->
+@*@if (User.IsInRole("canEdit"))*@
+
 <div id="announcementCreate">
-    @using (Ajax.BeginForm("AjaxCreate", "Announcements", new AjaxOptions
+   @if (User.IsInRole("canEdit")) { 
+    using (Ajax.BeginForm("AjaxCreate", "Announcements", new AjaxOptions
     {
         InsertionMode = InsertionMode.Replace,
         HttpMethod = "POST",
@@ -41,7 +43,9 @@
         </div>
 
     }
+        } 
 </div>
+@*}*@
 
 <!--partial view with announcements will be loaded in this div-->>
 <div id="announcementsDiv"></div>

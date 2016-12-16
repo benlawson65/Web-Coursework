@@ -24,6 +24,8 @@
         </div>
         <div class="Button">
             <p>
+                @*@if (User.IsInRole("canEdit"))*@
+                {
                 @using (Ajax.BeginForm("AjaxDeleteAnnouncement", "Announcements", new { id = item.Id }, new AjaxOptions
                 {
                     InsertionMode = InsertionMode.Replace,
@@ -31,11 +33,12 @@
                     UpdateTargetId = "announcementsDiv"
                 }))
                 {
-                    @Html.AntiForgeryToken()
-                    <input type="submit" value="Delete" class="btn btn-default" />
+                        @Html.AntiForgeryToken()
+                        <input type="submit" value="Delete" class="btn btn-default" />
 
                 }
-                
+                }
+
 
             </p>
         </div>

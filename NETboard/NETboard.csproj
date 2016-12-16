@@ -18,10 +18,10 @@
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort />
-    <IISExpressAnonymousAuthentication />
-    <IISExpressWindowsAuthentication />
-    <IISExpressUseClassicPipelineMode />
+    <IISExpressSSLPort>55667</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
@@ -184,6 +184,14 @@
     <Compile Include="Migrations\201612151532063_test.Designer.cs">
       <DependentUpon>201612151532063_test.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612161620470_roles.cs" />
+    <Compile Include="Migrations\201612161620470_roles.Designer.cs">
+      <DependentUpon>201612161620470_roles.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612161700092_updatedRoles.cs" />
+    <Compile Include="Migrations\201612161700092_updatedRoles.Designer.cs">
+      <DependentUpon>201612161700092_updatedRoles.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
@@ -292,6 +300,12 @@
     <EmbeddedResource Include="Migrations\201612151532063_test.resx">
       <DependentUpon>201612151532063_test.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612161620470_roles.resx">
+      <DependentUpon>201612161620470_roles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612161700092_updatedRoles.resx">
+      <DependentUpon>201612161700092_updatedRoles.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -311,7 +325,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>55667</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:55667/</IISUrl>
+          <IISUrl>https://localhost:44352/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
