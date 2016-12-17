@@ -192,6 +192,14 @@
     <Compile Include="Migrations\201612161700092_updatedRoles.Designer.cs">
       <DependentUpon>201612161700092_updatedRoles.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612171318153_staffNameToString.cs" />
+    <Compile Include="Migrations\201612171318153_staffNameToString.Designer.cs">
+      <DependentUpon>201612171318153_staffNameToString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612171357061_noOfViews.cs" />
+    <Compile Include="Migrations\201612171357061_noOfViews.Designer.cs">
+      <DependentUpon>201612171357061_noOfViews.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
@@ -305,6 +313,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612161700092_updatedRoles.resx">
       <DependentUpon>201612161700092_updatedRoles.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612171318153_staffNameToString.resx">
+      <DependentUpon>201612171318153_staffNameToString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612171357061_noOfViews.resx">
+      <DependentUpon>201612171357061_noOfViews.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

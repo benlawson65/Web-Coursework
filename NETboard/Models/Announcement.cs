@@ -13,11 +13,11 @@ namespace NETboard.Models
         public string announcementContent { get; set; }
         public string announcementTimeStamp { get; set; }
 
-        public ApplicationUser staffName { get; set; }
+        public string staffName { get; set; }
         public int staffID { get; set; }
         public virtual ICollection<Comment> listOfComments { get; set; }
 
-
+        public ICollection<string> WhoNotViewed { get; set; }
 
     }
 }

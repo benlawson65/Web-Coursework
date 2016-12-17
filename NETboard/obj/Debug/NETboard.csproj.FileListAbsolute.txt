@@ -140,17 +140,6 @@ E:\Documents\NETboard\Web-Coursework\NETboard\bin\Microsoft.Owin.Security.Twitte
 E:\Documents\NETboard\Web-Coursework\NETboard\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.csprojResolveAssemblyReference.cache
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.InitialCreate.resources
-E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.DB1net.resources
-E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.DB2net.resources
-E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.DB3net.resources
-E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.db.resources
-E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.db1.resources
-E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.dbWithUser.resources
-E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.dbWithUsers.resources
-E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.dbPartialViww.resources
-E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.dbWeeb.resources
-E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.addingUserStuff.resources
-E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.addingCommentsFeature.resources
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.csproj.GenerateResource.Cache
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.dll
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.pdb
@@ -228,3 +217,8 @@ C:\Users\ben\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.cspro
 C:\Users\ben\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.test.resources
 C:\Users\ben\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.roles.resources
 C:\Users\ben\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.updatedRoles.resources
+E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.test.resources
+E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.roles.resources
+E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.updatedRoles.resources
+E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.staffNameToString.resources
+E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.noOfViews.resources

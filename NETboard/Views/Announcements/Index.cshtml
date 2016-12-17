@@ -11,7 +11,7 @@
 
 <div id="announcementCreate">
    @if (User.IsInRole("canEdit")) { 
-    using (Ajax.BeginForm("AjaxCreate", "Announcements", new AjaxOptions
+    using (Ajax.BeginForm("AjaxCreateAnnouncement", "Announcements", new AjaxOptions
     {
         InsertionMode = InsertionMode.Replace,
         HttpMethod = "POST",

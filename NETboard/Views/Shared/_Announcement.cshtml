@@ -21,12 +21,18 @@
             <p>
                 @Html.DisplayFor(modelItem => item.announcementTimeStamp)
             </p>
+            <p>
+                @foreach (var user in item.WhoNotViewed)
+                {
+                    @Html.DisplayFor(modelItem => user)
+                }
+            </p>
         </div>
         <div class="Button">
             <p>
-                @*@if (User.IsInRole("canEdit"))*@
+                @if (User.IsInRole("canEdit"))
                 {
-                @using (Ajax.BeginForm("AjaxDeleteAnnouncement", "Announcements", new { id = item.Id }, new AjaxOptions
+                using (Ajax.BeginForm("AjaxDeleteAnnouncement", "Announcements", new { id = item.Id }, new AjaxOptions
                 {
                     InsertionMode = InsertionMode.Replace,
                     HttpMethod = "POST",

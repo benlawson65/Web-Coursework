@@ -42,7 +42,13 @@ namespace NETboard.Controllers
 
             Comment comment = new Comment();
             comment.commentContent = commentInstance.CommentModel.commentContent;
-            comment.userName = "something";
+
+            //find who sent the comment
+            string currentUserID = User.Identity.GetUserId();
+            ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserID);
+            announcement.staffName = currentUser.UserName;
+            comment.userName = currentUser.UserName;
+
             comment.timeStamp = DateTime.Now.ToString("h:mm:ss tt");
             announcement.listOfComments.Add(comment);
             InsertsAnnouncements();
@@ -98,14 +104,31 @@ namespace NETboard.Controllers
         //used to update the announcements feed when new announcement added from same page
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AjaxCreate([Bind(Include = "Id,announcementTitle,announcementContent")] Announcement announcement)
+        public ActionResult AjaxCreateAnnouncement([Bind(Include = "Id,announcementTitle,announcementContent")] Announcement announcement)
         {
             if (ModelState.IsValid)
             {
                 announcement.announcementTimeStamp = DateTime.Now.ToString("h:mm:ss tt");
+
+                //find out who posted announcement
                 string currentUserID = User.Identity.GetUserId();
                 ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserID);
-                announcement.staffName = currentUser;
+                announcement.staffName = currentUser.UserName;
+
+                ApplicationUser[] listOfUsers = db.Users.ToArray();
+
+                //views
+                announcement.WhoNotViewed = new List<string>();
+                for (int counter = 0; counter < listOfUsers.Length; counter++) {
+
+                    //find all students
+                    //if (!(User.IsInRole("canEdit")))
+                    if((listOfUsers[counter].Roles.Count == 0))
+                    {
+                        
+                        announcement.WhoNotViewed.Add(listOfUsers[counter].UserName);
+                    }
+                }
                 announcement.listOfComments = new List<Comment>();
                 db.Announcements.Add(announcement);
                 db.SaveChanges();
