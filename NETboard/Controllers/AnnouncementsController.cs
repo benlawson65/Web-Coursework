@@ -16,13 +16,23 @@ namespace NETboard.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: Announcements
-        public ActionResult Index()
+
+        public ActionResult Index(Announcement announcement)
         {
-            return View(); //View(db.Announcements.ToList());
+
+            string currentUserID = User.Identity.GetUserId();
+            ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserID);
+            
+
+            return View(announcement); //View(db.Announcements.ToList());
         }
         public void InsertsAnnouncements()
         {
             AnnouncementWithItsComments link = new AnnouncementWithItsComments();
+
+            AllAnnouncementsToUsers();
+            SeenAnnouncement();
+
             ICollection<Announcement> ann = db.Announcements.ToList();
             link.AnnouncementsList = new List<Announcement>();
             foreach (var element in ann)
@@ -31,6 +41,119 @@ namespace NETboard.Controllers
             }
             db.AnnouncementWithItsComments = link;
             db.SaveChanges();
+        }
+
+        public void AllAnnouncementsToUsers()
+        {
+            //Announcement announcement = db.Announcements.Find(id);
+
+            ApplicationUser[] listOfUsers = db.Users.ToArray();
+
+            List<ApplicationUser> allStudentList = new List<ApplicationUser>();
+            List<Announcement> allAnnouncements = db.Announcements.ToList();
+            //ViewStudent student = new ViewStudent();
+
+            List<StudentNotViewed> AllStudentsAndAnnouncements = db.StudentNotVieweds.ToList();
+
+
+            for (int i = 0; i < listOfUsers.Length; i++)
+            {
+                //only add students
+                if (listOfUsers[i].Roles.Count == 0)
+                {
+                    //allStudentList.StudentUsers.Add(listOfUsers[i].UserName)
+
+                    //student.StudentUser = listOfUsers[i];
+                    allStudentList.Add(listOfUsers[i]);
+                }
+            }
+
+            //make sure students + announcementes aready in the model that links them already
+            foreach (var student in allStudentList)
+            {
+                foreach (var singleAnnouncement in allAnnouncements)
+                {
+                    
+                        //FIX THIS TO GO THROUGH ALL ANNOUNCEMENTSANDSTUDENTS AND CHECK IF THEY ARE ALREADY IN THERE
+                        if SpecificStudent.Id && singleAnnouncement.Id != link.SpecificAnnouncement.Id)
+                        {
+
+                            //store data in instance of the model
+                            StudentNotViewed newStudentAnnouncementLink = new StudentNotViewed();
+                            newStudentAnnouncementLink.SpecificStudentId = int.Parse(student.Id);
+                            newStudentAnnouncementLink.SpecificAnnouncementId = singleAnnouncement.Id;
+                            newStudentAnnouncementLink.SpecificAnnouncement = singleAnnouncement;
+                            newStudentAnnouncementLink.SpecificStudent = student;
+
+                            //add instance to database
+                            db.StudentNotVieweds.Add(newStudentAnnouncementLink);
+                            db.SaveChanges();
+                        }
+
+                    
+
+
+                }
+
+
+            }
+
+
+            
+        }
+        public void SeenAnnouncement() {
+            //get current user
+            string currentUserID = User.Identity.GetUserId();
+            ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserID);
+
+            //if current user is student
+            if (currentUser.Roles.Count == 0)
+            {
+
+
+                ApplicationUser[] listOfUsers = db.Users.ToArray();
+
+                //List<ApplicationUser> allStudentList = new List<ApplicationUser>();
+                List<Announcement> allAnnouncements = db.Announcements.ToList();
+                //ViewStudent student = new ViewStudent();
+
+                //List<StudentNotViewed> linkStudentAndAnnouncements = db.StudentNotVieweds.ToList();
+
+                List<StudentViewed> allAnnouncementsAndStudentsViewed = db.StudentVieweds.ToList();
+
+
+
+                //make sure students + announcementes aready in the model that links them already
+                foreach (var studentAndAnnouncement in allAnnouncementsAndStudentsViewed)
+                {
+                    foreach (var announcement in allAnnouncements)
+                    {
+
+                        //check that the current student and any announcement is not already in it, if so add it to seen
+                        if (!(studentAndAnnouncement.SpecificAnnouncement.Id == announcement.Id && studentAndAnnouncement.SpecificStudent.Id == currentUser.Id))
+                        {
+                            StudentViewed newStudentAnnouncementLink = new StudentViewed();
+                            newStudentAnnouncementLink.SpecificStudentId = int.Parse(currentUser.Id);
+                            newStudentAnnouncementLink.SpecificAnnouncementId = announcement.Id;
+                            newStudentAnnouncementLink.SpecificAnnouncement = announcement;
+                            newStudentAnnouncementLink.SpecificStudent = currentUser;
+
+                            //add instance to database
+                            db.StudentVieweds.Add(newStudentAnnouncementLink);
+                            db.SaveChanges();
+                        }
+
+                    }
+
+                    //store data in instance of the model
+
+                }
+
+            }
+
+
+                    
+                
         }
 
         [HttpPost]
@@ -115,6 +238,7 @@ namespace NETboard.Controllers
                 ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserID);
                 announcement.staffName = currentUser.UserName;
 
+                //get all users
                 ApplicationUser[] listOfUsers = db.Users.ToArray();
 
                 //views

@@ -17,7 +17,7 @@ namespace NETboard.Models
         public int staffID { get; set; }
         public virtual ICollection<Comment> listOfComments { get; set; }
 
-        public ICollection<string> WhoNotViewed { get; set; }
+        public List<string> WhoNotViewed { get; set; }
 
     }
 }

@@ -37,5 +37,11 @@ namespace NETboard.Models
         public DbSet<Comment> Comments { get; set; }
 
         public AnnouncementWithItsComments AnnouncementWithItsComments { get; set; }
+
+        public System.Data.Entity.DbSet<NETboard.Models.LinkAnnouncementAndStudent> LinkAnnouncementAndStudents { get; set; }
+
+        public System.Data.Entity.DbSet<NETboard.Models.StudentNotViewed> StudentNotVieweds { get; set; }
+
+        public System.Data.Entity.DbSet<NETboard.Models.StudentViewed> StudentVieweds { get; set; }
     }
 }

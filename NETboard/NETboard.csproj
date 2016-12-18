@@ -172,7 +172,10 @@
     <Compile Include="Controllers\AnnouncementWithItsCommentsController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LinkAnnouncementAndStudentsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\StudentNotViewedsController.cs" />
+    <Compile Include="Controllers\StudentViewedsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -200,13 +203,32 @@
     <Compile Include="Migrations\201612171357061_noOfViews.Designer.cs">
       <DependentUpon>201612171357061_noOfViews.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612171759297_viewsGoesToNull.cs" />
+    <Compile Include="Migrations\201612171759297_viewsGoesToNull.Designer.cs">
+      <DependentUpon>201612171759297_viewsGoesToNull.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612171830225_attmptviewfix.cs" />
+    <Compile Include="Migrations\201612171830225_attmptviewfix.Designer.cs">
+      <DependentUpon>201612171830225_attmptviewfix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612172153556_addlinkmodel.cs" />
+    <Compile Include="Migrations\201612172153556_addlinkmodel.Designer.cs">
+      <DependentUpon>201612172153556_addlinkmodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612172336591_rip.cs" />
+    <Compile Include="Migrations\201612172336591_rip.Designer.cs">
+      <DependentUpon>201612172336591_rip.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
     <Compile Include="Models\AnnouncementWithItsComments.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\LinkAnnouncementAndStudent.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\StudentNotViewed.cs" />
+    <Compile Include="Models\StudentViewed.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -288,6 +310,21 @@
     <Content Include="Views\AnnouncementWithItsComments\Details.cshtml" />
     <Content Include="Views\AnnouncementWithItsComments\Edit.cshtml" />
     <Content Include="Views\AnnouncementWithItsComments\Index.cshtml" />
+    <Content Include="Views\LinkAnnouncementAndStudents\Create.cshtml" />
+    <Content Include="Views\LinkAnnouncementAndStudents\Delete.cshtml" />
+    <Content Include="Views\LinkAnnouncementAndStudents\Details.cshtml" />
+    <Content Include="Views\LinkAnnouncementAndStudents\Edit.cshtml" />
+    <Content Include="Views\LinkAnnouncementAndStudents\Index.cshtml" />
+    <Content Include="Views\StudentNotVieweds\Create.cshtml" />
+    <Content Include="Views\StudentNotVieweds\Delete.cshtml" />
+    <Content Include="Views\StudentNotVieweds\Details.cshtml" />
+    <Content Include="Views\StudentNotVieweds\Edit.cshtml" />
+    <Content Include="Views\StudentNotVieweds\Index.cshtml" />
+    <Content Include="Views\StudentVieweds\Create.cshtml" />
+    <Content Include="Views\StudentVieweds\Delete.cshtml" />
+    <Content Include="Views\StudentVieweds\Details.cshtml" />
+    <Content Include="Views\StudentVieweds\Edit.cshtml" />
+    <Content Include="Views\StudentVieweds\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -319,6 +356,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612171357061_noOfViews.resx">
       <DependentUpon>201612171357061_noOfViews.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612171759297_viewsGoesToNull.resx">
+      <DependentUpon>201612171759297_viewsGoesToNull.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612171830225_attmptviewfix.resx">
+      <DependentUpon>201612171830225_attmptviewfix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612172153556_addlinkmodel.resx">
+      <DependentUpon>201612172153556_addlinkmodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612172336591_rip.resx">
+      <DependentUpon>201612172336591_rip.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

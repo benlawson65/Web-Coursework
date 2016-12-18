@@ -22,9 +22,40 @@
                 @Html.DisplayFor(modelItem => item.announcementTimeStamp)
             </p>
             <p>
-                @foreach (var user in item.WhoNotViewed)
+                @if (User.IsInRole("canEdit"))
                 {
-                    @Html.DisplayFor(modelItem => user)
+                    @*
+                    using (Ajax.BeginForm("AjaxUpdateViews", "Announcements", new { id = item.Id }, new AjaxOptions
+                    {
+                        InsertionMode = InsertionMode.Replace,
+                            HttpMethod = "POST",
+                            UpdateTargetId = "announcementsDiv"
+                        }))
+                        { 
+                        *@
+                if (item.WhoNotViewed == null)
+                {
+                    item.WhoNotViewed = new List<string>();
+                }
+                foreach (var user in item.WhoNotViewed)
+                {
+                            @Html.DisplayFor(modelItem => user)
+                            }
+
+                    }
+                    else
+                    {
+                        var userName = System.Web.HttpContext.Current.User.Identity.Name;
+
+                        for (int counter = 0; counter < item.WhoNotViewed.Count; counter++)
+                        {
+                            if (item.WhoNotViewed.ElementAt<string>(counter).ToString().Equals(userName))
+                            {
+                                item.WhoNotViewed.RemoveAt(counter);
+                            }
+
+                        }
+                    
                 }
             </p>
         </div>
