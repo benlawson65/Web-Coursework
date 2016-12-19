@@ -228,3 +228,7 @@ C:\Users\ben\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migra
 C:\Users\ben\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.attmptviewfix.resources
 C:\Users\ben\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.addlinkmodel.resources
 C:\Users\ben\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.rip.resources
+E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.viewsGoesToNull.resources
+E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.attmptviewfix.resources
+E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.addlinkmodel.resources
+E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.rip.resources

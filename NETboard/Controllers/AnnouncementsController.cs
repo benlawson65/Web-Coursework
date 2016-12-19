@@ -30,8 +30,10 @@ namespace NETboard.Controllers
         {
             AnnouncementWithItsComments link = new AnnouncementWithItsComments();
 
+            //find students that haven't viewed an announcement
             AllAnnouncementsToUsers();
             SeenAnnouncement();
+            NotSeenAnnouncement();
 
             ICollection<Announcement> ann = db.Announcements.ToList();
             link.AnnouncementsList = new List<Announcement>();
@@ -53,7 +55,7 @@ namespace NETboard.Controllers
             List<Announcement> allAnnouncements = db.Announcements.ToList();
             //ViewStudent student = new ViewStudent();
 
-            List<StudentNotViewed> AllStudentsAndAnnouncements = db.StudentNotVieweds.ToList();
+            List<LinkAnnouncementAndStudent> AllStudentsAndAnnouncements = db.LinkAnnouncementAndStudents.ToList();
 
 
             for (int i = 0; i < listOfUsers.Length; i++)
@@ -67,40 +69,43 @@ namespace NETboard.Controllers
                     allStudentList.Add(listOfUsers[i]);
                 }
             }
-
+            bool studentAndAnnouncementAlreadyIn = false;
             //make sure students + announcementes aready in the model that links them already
             foreach (var student in allStudentList)
             {
                 foreach (var singleAnnouncement in allAnnouncements)
                 {
                     
-                        //FIX THIS TO GO THROUGH ALL ANNOUNCEMENTSANDSTUDENTS AND CHECK IF THEY ARE ALREADY IN THERE
-                        if SpecificStudent.Id && singleAnnouncement.Id != link.SpecificAnnouncement.Id)
-                        {
-
-                            //store data in instance of the model
-                            StudentNotViewed newStudentAnnouncementLink = new StudentNotViewed();
-                            newStudentAnnouncementLink.SpecificStudentId = int.Parse(student.Id);
-                            newStudentAnnouncementLink.SpecificAnnouncementId = singleAnnouncement.Id;
-                            newStudentAnnouncementLink.SpecificAnnouncement = singleAnnouncement;
-                            newStudentAnnouncementLink.SpecificStudent = student;
-
-                            //add instance to database
-                            db.StudentNotVieweds.Add(newStudentAnnouncementLink);
-                            db.SaveChanges();
-                        }
-
                     
+                    foreach (var content in AllStudentsAndAnnouncements)  //SpecificStudent.Id && singleAnnouncement.Id != link.SpecificAnnouncement.Id)
+                    {
+                        //check if the combination of student and announcement is already in the list of all students to all announcements
+                        if ((content.SpecificStudent.Id == student.Id && content.SpecificAnnouncement.Id == singleAnnouncement.Id)) {
+                            studentAndAnnouncementAlreadyIn = true;
+                        }
+                    }
 
+                    //if the combination is not in all combinations then add it
+                    if (!(studentAndAnnouncementAlreadyIn)) { 
+                    
+                        //store data in instance of the model
+                        LinkAnnouncementAndStudent newStudentAnnouncementLink = new LinkAnnouncementAndStudent();
+                        
+                        newStudentAnnouncementLink.SpecificAnnouncement = singleAnnouncement;
+                        newStudentAnnouncementLink.SpecificStudent = student;
 
-                }
+                        //newStudentAnnouncementLink.SpecificStudentId = Convert.ToInt32(newStudentAnnouncementLink.SpecificStudent.Id);
+                        newStudentAnnouncementLink.SpecificAnnouncementId = newStudentAnnouncementLink.SpecificAnnouncement.Id;
 
+                        //add instance to database
+                        db.LinkAnnouncementAndStudents.Add(newStudentAnnouncementLink);
+                        db.SaveChanges();
 
-            }
-
-
-            
-        }
+                        studentAndAnnouncementAlreadyIn = false;
+                    }
+                 }
+             }
+         }
         public void SeenAnnouncement() {
             //get current user
             string currentUserID = User.Identity.GetUserId();
@@ -122,27 +127,35 @@ namespace NETboard.Controllers
                 List<StudentViewed> allAnnouncementsAndStudentsViewed = db.StudentVieweds.ToList();
 
 
-
-                //make sure students + announcementes aready in the model that links them already
-                foreach (var studentAndAnnouncement in allAnnouncementsAndStudentsViewed)
+                bool alreadySeenAnnouncements = false;
+                //make sure students + announcementes already in the model that links them already
+                
+                foreach (var announcement in allAnnouncements)
                 {
-                    foreach (var announcement in allAnnouncements)
+                    foreach (var studentAndAnnouncement in allAnnouncementsAndStudentsViewed)
                     {
-
                         //check that the current student and any announcement is not already in it, if so add it to seen
-                        if (!(studentAndAnnouncement.SpecificAnnouncement.Id == announcement.Id && studentAndAnnouncement.SpecificStudent.Id == currentUser.Id))
+                        if ((studentAndAnnouncement.SpecificAnnouncement.Id == announcement.Id && studentAndAnnouncement.SpecificStudent.Id == currentUser.Id))
                         {
-                            StudentViewed newStudentAnnouncementLink = new StudentViewed();
-                            newStudentAnnouncementLink.SpecificStudentId = int.Parse(currentUser.Id);
-                            newStudentAnnouncementLink.SpecificAnnouncementId = announcement.Id;
-                            newStudentAnnouncementLink.SpecificAnnouncement = announcement;
-                            newStudentAnnouncementLink.SpecificStudent = currentUser;
-
-                            //add instance to database
-                            db.StudentVieweds.Add(newStudentAnnouncementLink);
-                            db.SaveChanges();
+                            alreadySeenAnnouncements = true;
                         }
+                            
 
+                    }
+
+                    if (!(alreadySeenAnnouncements))
+                    {
+                        StudentViewed newStudentAnnouncementLink = new StudentViewed();
+                        //newStudentAnnouncementLink.SpecificStudentId = int.Parse(currentUser.Id);
+                        newStudentAnnouncementLink.SpecificAnnouncementId = announcement.Id;
+                        newStudentAnnouncementLink.SpecificAnnouncement = announcement;
+                        newStudentAnnouncementLink.SpecificStudent = currentUser;
+
+                        //add instance to database
+                        db.StudentVieweds.Add(newStudentAnnouncementLink);
+                        db.SaveChanges();
+
+                        //alreadySeenAnnouncements = true
                     }
 
                     //store data in instance of the model
@@ -150,10 +163,87 @@ namespace NETboard.Controllers
                 }
 
             }
+       }
 
+        public void NotSeenAnnouncement()
+        {
+            List<LinkAnnouncementAndStudent> allStudentsToAllAnnouncements = db.LinkAnnouncementAndStudents.ToList();
+            List<StudentViewed> allSeenStudentsToAnnouncements = db.StudentVieweds.ToList();
+            List<StudentNotViewed> allNotSeenStudentsToAnnouncements = db.StudentNotVieweds.ToList();
+            //List<StudentNotViewed>
 
+            bool studentSeen = false; 
+            foreach (var studentToAnnouncement in allStudentsToAllAnnouncements)
+            {
+                //if(allSeenStudentsToAnnouncements.Contains<SpecificStudent>(studentToAnnouncement.SpecificStudent) )
+                foreach (var seenStudentToAnnouncement in allSeenStudentsToAnnouncements)
+                {
+                    //check if student to announcement is not already in the seen model
+                    if(studentToAnnouncement.SpecificStudent.Id == seenStudentToAnnouncement.SpecificStudent.Id && studentToAnnouncement.SpecificAnnouncement.Id == seenStudentToAnnouncement.SpecificAnnouncement.Id)
+                    {
+                        studentSeen = true;
+                    }
                     
+                }
+                if (!(studentSeen))
+                {
+                    bool alreadyInNotSeen = false;
+                    //check not already in db of not seen
+                    foreach(var studentNotSeen in allNotSeenStudentsToAnnouncements)
+                    {
+                        if(studentNotSeen.SpecificStudent.Id == studentToAnnouncement.SpecificStudent.Id && studentNotSeen.SpecificAnnouncement.Id == studentToAnnouncement.SpecificAnnouncement.Id)
+                        {
+                             alreadyInNotSeen = true;
+                        }
+                    }
+                    if (!(alreadyInNotSeen)) {
+                        //NEEDS TO HOLD EVERY STUDENT TO EVERY ANNOUNCEMENT NOT SEEN
+
+                        StudentNotViewed newStudentAnnouncementLink = new StudentNotViewed();
+                        //newStudentAnnouncementLink.SpecificStudentId = int.Parse(currentUser.Id);
+                        newStudentAnnouncementLink.SpecificAnnouncementId = studentToAnnouncement.SpecificAnnouncement.Id;
+                        newStudentAnnouncementLink.SpecificAnnouncement = studentToAnnouncement.SpecificAnnouncement;
+                        newStudentAnnouncementLink.SpecificStudent = studentToAnnouncement.SpecificStudent;
+                        db.StudentNotVieweds.Add(newStudentAnnouncementLink);
+                        db.SaveChanges();
+                        //add instance to database
+
+
+                        studentSeen = false;
+
+                        
+                    }
+                   
+                }
                 
+            }
+            List<StudentViewed> allSeenStudentsToAnnouncementsUpdated = db.StudentVieweds.ToList();
+            List<StudentNotViewed> allNotSeenStudentsToAnnouncementsUpdated = db.StudentNotVieweds.ToList();
+            //need to remove students from the not seen list that are in the seen list
+            bool studentInBoth = false;
+            bool skipNext = false;
+            foreach (var studentNotSeenAnnouncement in allNotSeenStudentsToAnnouncementsUpdated.ToList())
+            {
+                foreach(var studentSeenAnnouncement in allSeenStudentsToAnnouncementsUpdated)
+                {
+                    if (!skipNext) {
+                        skipNext = false;
+                        if (studentSeenAnnouncement.SpecificStudent.Id == studentNotSeenAnnouncement.SpecificStudent.Id && studentSeenAnnouncement.SpecificAnnouncement.Id == studentNotSeenAnnouncement.SpecificAnnouncement.Id)
+                        {
+                            
+                            db.StudentNotVieweds.Remove(studentNotSeenAnnouncement);
+                            db.SaveChanges();
+                            allNotSeenStudentsToAnnouncementsUpdated.Remove(studentNotSeenAnnouncement);
+                            skipNext = true;
+                            //allNotSeenStudentsToAnnouncementsUpdated = 
+                        }
+                    }
+                    
+                }
+               
+            }
+           
+            
         }
 
         [HttpPost]
@@ -193,6 +283,7 @@ namespace NETboard.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
+            
             Announcement announcement = db.Announcements.Find(id);
             if (announcement == null)
             {

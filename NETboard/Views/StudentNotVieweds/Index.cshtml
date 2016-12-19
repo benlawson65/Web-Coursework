@@ -4,36 +4,22 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Students that have not viewed the announcement</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
 <table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.SpecificAnnouncement.announcementTitle)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.SpecificStudentId)
-        </th>
-        <th></th>
-    </tr>
+    @foreach (var item in Model)
+    {
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.SpecificAnnouncement.announcementTitle)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.SpecificStudentId)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}
+        if (ViewBag.SendID == item.SpecificAnnouncement.Id)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SpecificStudent.UserName)
+                </td>
+            </tr>
+        }
+
+    }
 
 </table>
+

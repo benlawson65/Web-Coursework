@@ -15,12 +15,17 @@ namespace NETboard.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: StudentNotVieweds
-        public ActionResult Index()
+        public ActionResult Index(int? Id)
         {
+            if(Id != null)
+            {
+                ViewBag.SendID = Id;
+            }
+            
             var studentNotVieweds = db.StudentNotVieweds.Include(s => s.SpecificAnnouncement);
             return View(studentNotVieweds.ToList());
         }
-
+        
         // GET: StudentNotVieweds/Details/5
         public ActionResult Details(int? id)
         {
