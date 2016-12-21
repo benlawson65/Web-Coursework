@@ -15,11 +15,14 @@ namespace NETboard.Controllers
         private ApplicationDbContext db = new ApplicationDbContext();
 
         // GET: StudentNotVieweds
-        public ActionResult Index(int? Id)
+        public ActionResult Index(int? id)
         {
-            if(Id != null)
+
+            //send announcement id to view so that only students that have 
+            //not seen the specific announcment are shown
+            if(id != null)
             {
-                ViewBag.SendID = Id;
+                ViewBag.SendID = id;
             }
             
             var studentNotVieweds = db.StudentNotVieweds.Include(s => s.SpecificAnnouncement);
@@ -44,7 +47,7 @@ namespace NETboard.Controllers
         // GET: StudentNotVieweds/Create
         public ActionResult Create()
         {
-            ViewBag.SpecificAnnouncementId = new SelectList(db.Announcements, "Id", "announcementTitle");
+            ViewBag.SpecificAnnouncementId = new SelectList(db.Announcements, "Id", "Title");
             return View();
         }
 
@@ -62,7 +65,7 @@ namespace NETboard.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SpecificAnnouncementId = new SelectList(db.Announcements, "Id", "announcementTitle", studentNotViewed.SpecificAnnouncementId);
+            ViewBag.SpecificAnnouncementId = new SelectList(db.Announcements, "Id", "Title", studentNotViewed.SpecificAnnouncementId);
             return View(studentNotViewed);
         }
 
@@ -78,7 +81,7 @@ namespace NETboard.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.SpecificAnnouncementId = new SelectList(db.Announcements, "Id", "announcementTitle", studentNotViewed.SpecificAnnouncementId);
+            ViewBag.SpecificAnnouncementId = new SelectList(db.Announcements, "Id", "Title", studentNotViewed.SpecificAnnouncementId);
             return View(studentNotViewed);
         }
 
@@ -95,7 +98,7 @@ namespace NETboard.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.SpecificAnnouncementId = new SelectList(db.Announcements, "Id", "announcementTitle", studentNotViewed.SpecificAnnouncementId);
+            ViewBag.SpecificAnnouncementId = new SelectList(db.Announcements, "Id", "Title", studentNotViewed.SpecificAnnouncementId);
             return View(studentNotViewed);
         }
 

@@ -5,7 +5,7 @@ using System.Web;
 
 namespace NETboard.Models
 {
-    public class AnnouncementWithItsComments
+    public class AnnouncementWithItsComment
     {
         public int Id { get; set; }
         public virtual ICollection<Announcement> AnnouncementsList { get; set; }

@@ -139,7 +139,6 @@ E:\Documents\NETboard\Web-Coursework\NETboard\bin\Microsoft.Owin.Security.Google
 E:\Documents\NETboard\Web-Coursework\NETboard\bin\Microsoft.Owin.Security.Twitter.xml
 E:\Documents\NETboard\Web-Coursework\NETboard\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.csprojResolveAssemblyReference.cache
-E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.InitialCreate.resources
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.csproj.GenerateResource.Cache
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.dll
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.pdb
@@ -220,7 +219,6 @@ C:\Users\ben\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migra
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.test.resources
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.roles.resources
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.updatedRoles.resources
-E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.staffNameToString.resources
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.noOfViews.resources
 C:\Users\ben\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.staffNameToString.resources
 C:\Users\ben\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.noOfViews.resources
@@ -232,3 +230,12 @@ E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.view
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.attmptviewfix.resources
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.addlinkmodel.resources
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.rip.resources
+E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.pendingChanges.resources
+E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.StaffNameToString.resources
+E:\Documents\NETboard\Web-Coursework\NETboard\bin\AntiXssLibrary.dll
+E:\Documents\NETboard\Web-Coursework\NETboard\bin\HtmlSanitizationLibrary.dll
+E:\Documents\NETboard\Web-Coursework\NETboard\bin\AntiXssLibrary.xml
+E:\Documents\NETboard\Web-Coursework\NETboard\bin\HtmlSanitizationLibrary.xml
+E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.fixingBroken.resources
+E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.validationAdded.resources
+E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.addingMoreValidation.resources

@@ -18,13 +18,9 @@
                     <span class="icon-bar"></span>
                 </button>
                 <!-- shown text, view name, controller name-->
-                @Html.ActionLink("NETboard", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("NETboard", "Index", "Announcements", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                                    <!--shown text, view name, controller name-->
-                    <li>@Html.ActionLink("Announcements", "Index", "Announcements")</li>
-                </ul>
                 <!-- partial view showing log out but has its own file for definition-->
                 @Html.Partial("_LoginPartial")
             </div>
@@ -34,7 +30,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - NETboard</p>
         </footer>
     </div>
 

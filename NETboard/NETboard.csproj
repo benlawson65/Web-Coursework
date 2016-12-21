@@ -44,6 +44,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AntiXssLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\AntiXssLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="HtmlSanitizationLibrary, Version=4.3.0.0, Culture=neutral, PublicKeyToken=d127efab8a9c114f, processorArchitecture=MSIL">
+      <HintPath>..\packages\AntiXSS.4.3.0\lib\net40\HtmlSanitizationLibrary.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -179,10 +187,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201612111936174_InitialCreate.cs" />
-    <Compile Include="Migrations\201612111936174_InitialCreate.Designer.cs">
-      <DependentUpon>201612111936174_InitialCreate.cs</DependentUpon>
-    </Compile>
     <Compile Include="Migrations\201612151532063_test.cs" />
     <Compile Include="Migrations\201612151532063_test.Designer.cs">
       <DependentUpon>201612151532063_test.cs</DependentUpon>
@@ -219,10 +223,26 @@
     <Compile Include="Migrations\201612172336591_rip.Designer.cs">
       <DependentUpon>201612172336591_rip.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612201246069_pendingChanges.cs" />
+    <Compile Include="Migrations\201612201246069_pendingChanges.Designer.cs">
+      <DependentUpon>201612201246069_pendingChanges.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612201547565_fixingBroken.cs" />
+    <Compile Include="Migrations\201612201547565_fixingBroken.Designer.cs">
+      <DependentUpon>201612201547565_fixingBroken.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612201607141_validationAdded.cs" />
+    <Compile Include="Migrations\201612201607141_validationAdded.Designer.cs">
+      <DependentUpon>201612201607141_validationAdded.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201612201613023_addingMoreValidation.cs" />
+    <Compile Include="Migrations\201612201613023_addingMoreValidation.Designer.cs">
+      <DependentUpon>201612201613023_addingMoreValidation.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
-    <Compile Include="Models\AnnouncementWithItsComments.cs" />
+    <Compile Include="Models\AnnouncementWithItsComment.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\LinkAnnouncementAndStudent.cs" />
@@ -244,6 +264,7 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Content\BoostrapAttempt1.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -271,7 +292,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Views\Account\ConfirmEmail.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
@@ -279,7 +299,6 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ResetPassword.cshtml" />
     <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
     <Content Include="Views\Account\SendCode.cshtml" />
@@ -325,10 +344,17 @@
     <Content Include="Views\StudentVieweds\Details.cshtml" />
     <Content Include="Views\StudentVieweds\Edit.cshtml" />
     <Content Include="Views\StudentVieweds\Index.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="css\" />
+    <Folder Include="img\" />
+    <Folder Include="js\" />
+    <Folder Include="less\" />
+    <Folder Include="mail\" />
     <Folder Include="Migrations\201612081210209_dbW\" />
+    <Folder Include="vendor\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -339,9 +365,6 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201612111936174_InitialCreate.resx">
-      <DependentUpon>201612111936174_InitialCreate.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612151532063_test.resx">
       <DependentUpon>201612151532063_test.cs</DependentUpon>
     </EmbeddedResource>
@@ -368,6 +391,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612172336591_rip.resx">
       <DependentUpon>201612172336591_rip.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612201246069_pendingChanges.resx">
+      <DependentUpon>201612201246069_pendingChanges.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612201547565_fixingBroken.resx">
+      <DependentUpon>201612201547565_fixingBroken.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612201607141_validationAdded.resx">
+      <DependentUpon>201612201607141_validationAdded.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612201613023_addingMoreValidation.resx">
+      <DependentUpon>201612201613023_addingMoreValidation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -56,7 +56,7 @@ namespace NETboard.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,commentContent,timeStamp,userName")] Comment comment)
+        public ActionResult Create([Bind(Include = "Id,CommentContent,TimeStamp,UserName")] Comment comment)
         {
             if (ModelState.IsValid)
             {
@@ -66,21 +66,6 @@ namespace NETboard.Controllers
             }
 
             return View(comment);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult AjaxCreateComment([Bind(Include = "Id,commentContent,timeStamp,userName")] Comment comment)
-        {
-            if (ModelState.IsValid)
-            {
-                comment.timeStamp = DateTime.Now.ToString("h:mm:ss tt");
-                db.Comments.Add(comment);
-                db.SaveChanges();
-                //return RedirectToAction("Index");
-            }
-            return PartialView("_Comment", db.Comments.ToList());
-            
         }
 
         // GET: Comments/Edit/5
@@ -103,7 +88,7 @@ namespace NETboard.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,commentContent,timeStamp,userName")] Comment comment)
+        public ActionResult Edit([Bind(Include = "Id,CommentContent,TimeStamp,UserName")] Comment comment)
         {
             if (ModelState.IsValid)
             {
@@ -138,35 +123,6 @@ namespace NETboard.Controllers
             db.Comments.Remove(comment);
             db.SaveChanges();
             return RedirectToAction("Index");
-        }
-        public void InsertsAnnouncements()
-        {
-            AnnouncementWithItsComments link = new AnnouncementWithItsComments();
-            ICollection<Announcement> ann = db.Announcements.ToList();
-            link.AnnouncementsList = new List<Announcement>();
-            foreach (var element in ann)
-            {
-                link.AnnouncementsList.Add(element);
-            }
-            db.AnnouncementWithItsComments = link;
-            db.SaveChanges();
-        }
-
-        public ActionResult AjaxDeleteComment(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Comment comment = db.Comments.Find(id);
-            if (comment == null)
-            {
-                return HttpNotFound();
-            }
-            db.Comments.Remove(comment);
-            db.SaveChanges();
-            InsertsAnnouncements();
-            return PartialView("_Announcement", db.AnnouncementWithItsComments);
         }
 
         protected override void Dispose(bool disposing)

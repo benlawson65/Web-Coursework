@@ -4,13 +4,13 @@
 @foreach (var item in Model)
 {
     <h2>
-        @Html.DisplayFor(modelItem => item.commentContent)
+        @Html.DisplayFor(modelItem => item.CommentContent)
     </h2>
     <p>
-        @Html.DisplayFor(modelItem => item.timeStamp)
+        @Html.DisplayFor(modelItem => item.TimeStamp)
     </p>
         <p>
-            @Html.DisplayFor(modelItem => item.userName)
+            @Html.DisplayFor(modelItem => item.UserName)
         </p>
         <p>
             @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |

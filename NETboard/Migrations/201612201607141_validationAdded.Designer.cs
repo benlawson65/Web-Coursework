@@ -7,13 +7,13 @@ namespace NETboard.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class InitialCreate : IMigrationMetadata
+    public sealed partial class validationAdded : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialCreate));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(validationAdded));
         
         string IMigrationMetadata.Id
         {
-            get { return "201612111936174_InitialCreate"; }
+            get { return "201612201607141_validationAdded"; }
         }
         
         string IMigrationMetadata.Source

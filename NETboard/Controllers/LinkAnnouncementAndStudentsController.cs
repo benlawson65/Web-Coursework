@@ -39,7 +39,7 @@ namespace NETboard.Controllers
         // GET: LinkAnnouncementAndStudents/Create
         public ActionResult Create()
         {
-            ViewBag.SpecificAnnouncementId = new SelectList(db.Announcements, "Id", "announcementTitle");
+            ViewBag.SpecificAnnouncementId = new SelectList(db.Announcements, "Id", "Title");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace NETboard.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SpecificAnnouncementId = new SelectList(db.Announcements, "Id", "announcementTitle", linkAnnouncementAndStudent.SpecificAnnouncementId);
+            ViewBag.SpecificAnnouncementId = new SelectList(db.Announcements, "Id", "Title", linkAnnouncementAndStudent.SpecificAnnouncementId);
             return View(linkAnnouncementAndStudent);
         }
 
@@ -73,7 +73,7 @@ namespace NETboard.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.SpecificAnnouncementId = new SelectList(db.Announcements, "Id", "announcementTitle", linkAnnouncementAndStudent.SpecificAnnouncementId);
+            ViewBag.SpecificAnnouncementId = new SelectList(db.Announcements, "Id", "Title", linkAnnouncementAndStudent.SpecificAnnouncementId);
             return View(linkAnnouncementAndStudent);
         }
 
@@ -90,7 +90,7 @@ namespace NETboard.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.SpecificAnnouncementId = new SelectList(db.Announcements, "Id", "announcementTitle", linkAnnouncementAndStudent.SpecificAnnouncementId);
+            ViewBag.SpecificAnnouncementId = new SelectList(db.Announcements, "Id", "Title", linkAnnouncementAndStudent.SpecificAnnouncementId);
             return View(linkAnnouncementAndStudent);
         }
 

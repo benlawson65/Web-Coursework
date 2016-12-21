@@ -4,11 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<!--<h2>Index</h2>-->
-
 <!--partial view to show form to create new announcement-->
-@*@if (User.IsInRole("canEdit"))*@
-
 <div id="announcementCreate">
    @if (User.IsInRole("canEdit")) { 
     using (Ajax.BeginForm("AjaxCreateAnnouncement", "Announcements", new AjaxOptions
@@ -21,17 +17,16 @@
         @Html.AntiForgeryToken()
         <!--Announcement title input box-->
         <div class="form-group">
-            @Html.LabelFor(model => model.announcementTitle, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Title, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.announcementTitle, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.announcementTitle, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
             </div>
         <!--Announcement content input box-->
-        <!--<div class="form-group">-->
-            @Html.LabelFor(model => model.announcementContent, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Content, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.announcementContent, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.announcementContent, "", new { @class = "text-danger" })
+                @Html.EditorFor(model => model.Content, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Content, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -45,9 +40,8 @@
     }
         } 
 </div>
-@*}*@
 
-<!--partial view with announcements will be loaded in this div-->>
+<!--partial view with announcements will be loaded in this div-->
 <div id="announcementsDiv"></div>
 
 <!--call javascript scripts that will place announcements in the div above-->

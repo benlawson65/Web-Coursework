@@ -10,107 +10,107 @@ using NETboard.Models;
 
 namespace NETboard.Controllers
 {
-    public class AnnouncementWithItsCommentsController : Controller
+    public class AnnouncementWithItsCommentController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
-        // GET: AnnouncementWithItsComments
+        // GET: AnnouncementWithItsComment
         public ActionResult Index()
         {
-            return View(db.AnnouncementWithItsComments);
+            return View(db.AnnouncementWithItsComment);
         }
 
-        // GET: AnnouncementWithItsComments/Details/5
+        // GET: AnnouncementWithItsComment/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AnnouncementWithItsComments announcementWithItsComments = db.AnnouncementWithItsComments;
-            if (announcementWithItsComments == null)
+            AnnouncementWithItsComment AnnouncementWithItsComment = db.AnnouncementWithItsComment;
+            if (AnnouncementWithItsComment == null)
             {
                 return HttpNotFound();
             }
-            return View(announcementWithItsComments);
+            return View(AnnouncementWithItsComment);
         }
 
-        // GET: AnnouncementWithItsComments/Create
+        // GET: AnnouncementWithItsComment/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: AnnouncementWithItsComments/Create
+        // POST: AnnouncementWithItsComment/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id")] AnnouncementWithItsComments announcementWithItsComments)
+        public ActionResult Create([Bind(Include = "Id")] AnnouncementWithItsComment AnnouncementWithItsComment)
         {
             if (ModelState.IsValid)
             {
-                db.AnnouncementWithItsComments=(announcementWithItsComments);
+                db.AnnouncementWithItsComment=(AnnouncementWithItsComment);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(announcementWithItsComments);
+            return View(AnnouncementWithItsComment);
         }
 
-        // GET: AnnouncementWithItsComments/Edit/5
+        // GET: AnnouncementWithItsComment/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AnnouncementWithItsComments announcementWithItsComments = db.AnnouncementWithItsComments;
-            if (announcementWithItsComments == null)
+            AnnouncementWithItsComment AnnouncementWithItsComment = db.AnnouncementWithItsComment;
+            if (AnnouncementWithItsComment == null)
             {
                 return HttpNotFound();
             }
-            return View(announcementWithItsComments);
+            return View(AnnouncementWithItsComment);
         }
 
-        // POST: AnnouncementWithItsComments/Edit/5
+        // POST: AnnouncementWithItsComment/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id")] AnnouncementWithItsComments announcementWithItsComments)
+        public ActionResult Edit([Bind(Include = "Id")] AnnouncementWithItsComment AnnouncementWithItsComment)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(announcementWithItsComments).State = EntityState.Modified;
+                db.Entry(AnnouncementWithItsComment).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(announcementWithItsComments);
+            return View(AnnouncementWithItsComment);
         }
 
-        // GET: AnnouncementWithItsComments/Delete/5
+        // GET: AnnouncementWithItsComment/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AnnouncementWithItsComments announcementWithItsComments = db.AnnouncementWithItsComments;
-            if (announcementWithItsComments == null)
+            AnnouncementWithItsComment AnnouncementWithItsComment = db.AnnouncementWithItsComment;
+            if (AnnouncementWithItsComment == null)
             {
                 return HttpNotFound();
             }
-            return View(announcementWithItsComments);
+            return View(AnnouncementWithItsComment);
         }
 
-        // POST: AnnouncementWithItsComments/Delete/5
+        // POST: AnnouncementWithItsComment/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            AnnouncementWithItsComments announcementWithItsComments = db.AnnouncementWithItsComments;
-            db.AnnouncementWithItsComments=null;
+            AnnouncementWithItsComment AnnouncementWithItsComment = db.AnnouncementWithItsComment;
+            db.AnnouncementWithItsComment=null;
             db.SaveChanges();
             return RedirectToAction("Index");
         }

@@ -7,6 +7,8 @@
 <h2>Students that have not viewed the announcement</h2>
 
 <table class="table">
+    @*go through all students to announcements not seen and diplay students 
+        that have not seen the announcement given in view bag*@
     @foreach (var item in Model)
     {
 
@@ -20,6 +22,10 @@
         }
 
     }
+    
 
 </table>
+<p>
+    @Html.ActionLink("Back to List", "Index", "Announcements")
+</p>
 

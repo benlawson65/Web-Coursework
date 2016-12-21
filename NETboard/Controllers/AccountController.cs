@@ -79,7 +79,7 @@ namespace NETboard.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    return RedirectToLocal("/Announcements");
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -96,7 +96,7 @@ namespace NETboard.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> VerifyCode(string provider, string returnUrl, bool rememberMe)
         {
-            // Require that the user has already logged in via username/password or external login
+            // Require that the user has already logged in via UserName/password or external login
             if (!await SignInManager.HasBeenVerifiedAsync())
             {
                 return View("Error");
@@ -139,7 +139,7 @@ namespace NETboard.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return View();
+            return Redirect("/Announcements");
         }
 
         //
@@ -149,6 +149,7 @@ namespace NETboard.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
+            return Redirect("/Announcements");
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
@@ -177,6 +178,7 @@ namespace NETboard.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
+            return Redirect("/Announcements");
             if (userId == null || code == null)
             {
                 return View("Error");
@@ -190,7 +192,7 @@ namespace NETboard.Controllers
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
-            return View();
+            return Redirect("/Announcements");
         }
 
         //
@@ -200,6 +202,7 @@ namespace NETboard.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
+            return Redirect("/Announcements");
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByNameAsync(model.Email);
@@ -226,7 +229,7 @@ namespace NETboard.Controllers
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
         {
-            return View();
+            return Redirect("/Announcements");
         }
 
         //
@@ -234,7 +237,7 @@ namespace NETboard.Controllers
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
-            return code == null ? View("Error") : View();
+            return Redirect("/Announcements");
         }
 
         //
@@ -244,6 +247,7 @@ namespace NETboard.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
         {
+            return Redirect("/Announcements");
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -268,7 +272,7 @@ namespace NETboard.Controllers
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
         {
-            return View();
+            return Redirect("/Announcements");
         }
 
         //

@@ -701,7 +701,7 @@ intellisense.annotate(jQuery.Event.prototype, {
     /// <summary>The DOM element that initiated the event.</summary>
     /// <returns type="Element" />
   },
-  'timeStamp': function() {
+  'TimeStamp': function() {
     /// <summary>The difference in milliseconds between the time the browser created the event and January 1, 1970.</summary>
     /// <returns type="Number" />
   },

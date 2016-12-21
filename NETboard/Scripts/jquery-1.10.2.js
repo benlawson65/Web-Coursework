@@ -5222,7 +5222,7 @@ jQuery.event = {
 	},
 
 	// Includes some event props shared by KeyEvent and MouseEvent
-	props: "altKey bubbles cancelable ctrlKey currentTarget eventPhase metaKey relatedTarget shiftKey target timeStamp view which".split(" "),
+	props: "altKey bubbles cancelable ctrlKey currentTarget eventPhase metaKey relatedTarget shiftKey target TimeStamp view which".split(" "),
 
 	fixHooks: {},
 
@@ -5398,8 +5398,8 @@ jQuery.Event = function( src, props ) {
 		jQuery.extend( this, props );
 	}
 
-	// Create a timestamp if incoming event doesn't have one
-	this.timeStamp = src && src.timeStamp || jQuery.now();
+	// Create a TimeStamp if incoming event doesn't have one
+	this.TimeStamp = src && src.TimeStamp || jQuery.now();
 
 	// Mark it as fixed
 	this[ jQuery.expando ] = true;
@@ -7813,7 +7813,7 @@ jQuery.extend({
 		timeout: 0,
 		data: null,
 		dataType: null,
-		username: null,
+		UserName: null,
 		password: null,
 		cache: null,
 		throws: false,
@@ -8679,9 +8679,9 @@ if ( xhrSupported ) {
 						xhr = s.xhr();
 
 					// Open the socket
-					// Passing null username, generates a login popup on Opera (#2865)
-					if ( s.username ) {
-						xhr.open( s.type, s.url, s.async, s.username, s.password );
+					// Passing null UserName, generates a login popup on Opera (#2865)
+					if ( s.UserName ) {
+						xhr.open( s.type, s.url, s.async, s.UserName, s.password );
 					} else {
 						xhr.open( s.type, s.url, s.async );
 					}
