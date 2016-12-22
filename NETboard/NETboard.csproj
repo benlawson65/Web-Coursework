@@ -239,6 +239,10 @@
     <Compile Include="Migrations\201612201613023_addingMoreValidation.Designer.cs">
       <DependentUpon>201612201613023_addingMoreValidation.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201612221730035_seededusers.cs" />
+    <Compile Include="Migrations\201612221730035_seededusers.Designer.cs">
+      <DependentUpon>201612221730035_seededusers.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Announcement.cs" />
@@ -253,6 +257,7 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-darkly2.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="CustomScripts\BuildAnnouncements.js" />
@@ -265,6 +270,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Content\BoostrapAttempt1.cshtml" />
+    <Content Include="Content\bootstrap-darkly" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -403,6 +409,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201612201613023_addingMoreValidation.resx">
       <DependentUpon>201612201613023_addingMoreValidation.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612221730035_seededusers.resx">
+      <DependentUpon>201612221730035_seededusers.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

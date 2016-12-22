@@ -239,3 +239,4 @@ E:\Documents\NETboard\Web-Coursework\NETboard\bin\HtmlSanitizationLibrary.xml
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.fixingBroken.resources
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.validationAdded.resources
 E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.addingMoreValidation.resources
+E:\Documents\NETboard\Web-Coursework\NETboard\obj\Debug\NETboard.Migrations.seededusers.resources

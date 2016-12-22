@@ -132,6 +132,7 @@ namespace NETboard.Controllers
                 //check if students + announcementes already in the seen model, if not, add them to it
                 foreach (var announcement in allAnnouncements)
                 {
+                    alreadySeenAnnouncements = false;
                     foreach (var studentAndAnnouncement in allAnnouncementsAndStudentsViewed)
                     {
                         //check that the current student and any announcement is not already in it, if so add it to seen
@@ -164,141 +165,42 @@ namespace NETboard.Controllers
         //students that have not seen specific announcements
         public void NotSeenAnnouncement()
         {
+            //remove current not seen views to replace with updated one
+            db.Database.ExecuteSqlCommand("TRUNCATE TABLE [StudentNotVieweds]");
+            db.SaveChanges();
 
-            //get all students to all announcements, all seen announcements and current not seen anouncements
             List<LinkAnnouncementAndStudent> allStudentsToAllAnnouncements = db.LinkAnnouncementAndStudents.ToList();
             List<StudentViewed> allSeenStudentsToAnnouncements = db.StudentVieweds.ToList();
-            List<StudentNotViewed> allNotSeenStudentsToAnnouncements = db.StudentNotVieweds.ToList();
-            List<StudentViewed> convertedAllList = new List<StudentViewed>();
-            List<StudentViewed> convertedNotSeen = new List<StudentViewed>();
-            List<StudentNotViewed> correctNotSeen = new List<StudentNotViewed>();
+            List<StudentNotViewed> notSeenList = new List<StudentNotViewed>();
 
-            //put all students to announcements list in the same data type as seen announcements
-            foreach (var allContent in allStudentsToAllAnnouncements)
-            {
-                StudentViewed newConvertedContent = new StudentViewed();
-                newConvertedContent.SpecificAnnouncementId = allContent.SpecificAnnouncement.Id;
-                newConvertedContent.SpecificAnnouncement = allContent.SpecificAnnouncement;
-                newConvertedContent.SpecificStudent = allContent.SpecificStudent;
-                convertedAllList.Add(newConvertedContent);
-
-                
-            }
-
-            //put all not seen students in the same data type as seen announcements
-            foreach (var allNotContent in allNotSeenStudentsToAnnouncements)
-            {
-                StudentViewed newConvertedContent = new StudentViewed();
-                newConvertedContent.SpecificAnnouncementId = allNotContent.SpecificAnnouncement.Id;
-                newConvertedContent.SpecificAnnouncement = allNotContent.SpecificAnnouncement;
-                newConvertedContent.SpecificStudent = allNotContent.SpecificStudent;
-                convertedNotSeen.Add(newConvertedContent);
-             }
-
-            //take seen students away from all seen students and put result in not seeen
-            convertedNotSeen = convertedAllList.Except(allSeenStudentsToAnnouncements).ToList();
-
-            //convert not seen back to model data type
-            foreach (var allNotContent in convertedNotSeen)
-            {
-                StudentNotViewed newConvertedContent = new StudentNotViewed();
-                newConvertedContent.SpecificAnnouncementId = allNotContent.SpecificAnnouncement.Id;
-                newConvertedContent.SpecificAnnouncement = allNotContent.SpecificAnnouncement;
-                newConvertedContent.SpecificStudent = allNotContent.SpecificStudent;
-                correctNotSeen.Add(newConvertedContent);
-            }
-
-            //remove all current elements
-            foreach (var notSeen in db.StudentNotVieweds)
-            {
-                db.StudentNotVieweds.Remove(notSeen);
-            }
-            db.SaveChanges();
-            //add correct elements
-            foreach (var correctContent in correctNotSeen)
-            {
-                db.StudentNotVieweds.Add(correctContent);
-            }
-
-            /*
-
-            //check if any of the students to announcements have not already been seen
-            bool studentSeen = false; 
+            //go through list of all students to announcements and seen students to announcements and add to not seen if not equal
+            bool studentSeen = false;
             foreach (var studentToAnnouncement in allStudentsToAllAnnouncements)
             {
+                studentSeen = false;
                 foreach (var seenStudentToAnnouncement in allSeenStudentsToAnnouncements)
                 {
                     //check if student to announcement is not already in the seen model
-                    if(studentToAnnouncement.SpecificStudent.Id == seenStudentToAnnouncement.SpecificStudent.Id && studentToAnnouncement.SpecificAnnouncement.Id == seenStudentToAnnouncement.SpecificAnnouncement.Id)
+                    if (studentToAnnouncement.SpecificStudent.Id == seenStudentToAnnouncement.SpecificStudent.Id && studentToAnnouncement.SpecificAnnouncement.Id == seenStudentToAnnouncement.SpecificAnnouncement.Id)
                     {
                         studentSeen = true;
                     }
-                    
+
                 }
 
-                //if the student hasnt seen the announcement, check its not already in the not seen model
-                if (!(studentSeen))
-                {
-                    bool alreadyInNotSeen = false;
-                    //check not already in db of not seen
-                    foreach(var studentNotSeen in allNotSeenStudentsToAnnouncements)
-                    {
-                        if(studentNotSeen.SpecificStudent.Id == studentToAnnouncement.SpecificStudent.Id && studentNotSeen.SpecificAnnouncement.Id == studentToAnnouncement.SpecificAnnouncement.Id)
-                        {
-                             alreadyInNotSeen = true;
-                        }
-                    }
-
-                    //if the student hasn't already not seen the announcement add it to not seen
-                    if (!(alreadyInNotSeen))
-                    {
-
-                        StudentNotViewed newStudentAnnouncementLink = new StudentNotViewed();
-                        newStudentAnnouncementLink.SpecificAnnouncementId = studentToAnnouncement.SpecificAnnouncement.Id;
-                        newStudentAnnouncementLink.SpecificAnnouncement = studentToAnnouncement.SpecificAnnouncement;
-                        newStudentAnnouncementLink.SpecificStudent = studentToAnnouncement.SpecificStudent;
-                        db.StudentNotVieweds.Add(newStudentAnnouncementLink);
-                        db.SaveChanges();
-                        //add instance to database
-
-
-                        studentSeen = false;
-
-                        
-                    }
-                   
+                //add to list of not seen
+                if (!studentSeen) {
+                    StudentNotViewed newNotSeen = new StudentNotViewed();
+                    newNotSeen.SpecificAnnouncementId = studentToAnnouncement.SpecificAnnouncement.Id;
+                    newNotSeen.SpecificAnnouncement = studentToAnnouncement.SpecificAnnouncement;
+                    newNotSeen.SpecificStudent = studentToAnnouncement.SpecificStudent;
+                    notSeenList.Add(newNotSeen);
+                    db.StudentNotVieweds.Add(newNotSeen);
+                    db.SaveChanges();
                 }
-                
+
             }
 
-            //if a student has now seen an announcement, remove them from not seen
-            List<StudentViewed> allSeenStudentsToAnnouncementsUpdated = db.StudentVieweds.ToList();
-            List<StudentNotViewed> allNotSeenStudentsToAnnouncementsUpdated = db.StudentNotVieweds.ToList();
-            //need to remove students from the not seen list that are in the seen list
-            bool studentInBoth = false;
-            bool skipNext = false;
-            foreach (var studentNotSeenAnnouncement in allNotSeenStudentsToAnnouncementsUpdated.ToList())
-            {
-                foreach(var studentSeenAnnouncement in allSeenStudentsToAnnouncementsUpdated)
-                {
-                    if (!skipNext)
-                    {
-                        skipNext = false;
-                        if (studentSeenAnnouncement.SpecificStudent.Id == studentNotSeenAnnouncement.SpecificStudent.Id && studentSeenAnnouncement.SpecificAnnouncement.Id == studentNotSeenAnnouncement.SpecificAnnouncement.Id)
-                        {
-                            
-                            db.StudentNotVieweds.Remove(studentNotSeenAnnouncement);
-                            db.SaveChanges();
-                            allNotSeenStudentsToAnnouncementsUpdated.Remove(studentNotSeenAnnouncement);
-                            skipNext = true;
-                        }
-                    }
-                    
-                }
-               
-            }
-           */
-            
         }
 
         //adds comment on same page
@@ -315,7 +217,7 @@ namespace NETboard.Controllers
             //find who sent the comment
             string currentUserID = User.Identity.GetUserId();
             ApplicationUser currentUser = db.Users.FirstOrDefault(x => x.Id == currentUserID);
-            announcement.staffName = currentUser.UserName;
+            //announcement.staffName = currentUser.UserName;
             comment.UserName = currentUser.UserName;
 
             //set time the comment was placed

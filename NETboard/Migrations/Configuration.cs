@@ -43,19 +43,24 @@ namespace NETboard.Migrations
 
             var userManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(context));
 
+            //seed students and lecutrer, giving passwords and roles
+            var student1 = new ApplicationUser { UserName = "Student1@email.com" };
+            var student2 = new ApplicationUser { UserName = "Student2@email.com" };
+            var student3 = new ApplicationUser { UserName = "Student3@email.com" };
+            var student4 = new ApplicationUser { UserName = "Student4@email.com" };
+            var student5 = new ApplicationUser { UserName = "Student5@email.com" };
+            var lecturer = new ApplicationUser { UserName = "Lecturer1@email.com" };
 
-            var userBen = new ApplicationUser { UserName = "Ben@hotmail.co.uk" };
-            var userBobLect = new ApplicationUser { UserName = "BobLecturer@hotmail.co.uk" };
-            var userBob = new ApplicationUser { UserName = "Bob@hotmail.co.uk" };
-
-            identityRoles = userManager.Create(userBobLect, "password");
-            userManager.Create(userBen, "password");
-            userManager.Create(userBob, "password");
-            userManager.Create(userBob, "password");
+            identityRoles = userManager.Create(lecturer, "password");
+            userManager.Create(student1, "password");
+            userManager.Create(student2, "password");
+            userManager.Create(student3, "password");
+            userManager.Create(student4, "password");
+            userManager.Create(student5, "password");
 
             if (identityRoles.Succeeded == false)
                 return identityRoles.Succeeded;
-            identityRoles = userManager.AddToRole(userBobLect.Id, "canEdit");
+            identityRoles = userManager.AddToRole(lecturer.Id, "canEdit");
             return identityRoles.Succeeded;
         }
     }

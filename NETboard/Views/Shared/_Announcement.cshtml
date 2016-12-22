@@ -5,10 +5,11 @@
 @foreach (var item in Model.AnnouncementsList.Reverse())
 {
     <div class="Announcement">
+    ___________________________________________________________________________________
         <div class="title">
-            <h2>
+            <h1>
                 @Html.DisplayFor(modelItem => item.Title)
-            </h2>
+            </h1>
         </div>
         <div class="Information">
 
@@ -80,9 +81,9 @@
             <p>
                 @foreach (var comment in item.ListOfComments.Reverse())
                 {
-                    <h2>
+                    <h3>
                         @Html.DisplayFor(modelItem => comment.CommentContent)
-                    </h2>
+                    </h3>
                 <p>
                     @Html.DisplayFor(modelItem => comment.TimeStamp)
                 </p>
@@ -113,5 +114,5 @@
 
 }
 
-
+____________________________________________________________________________________
 

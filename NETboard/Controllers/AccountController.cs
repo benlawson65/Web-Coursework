@@ -139,7 +139,7 @@ namespace NETboard.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            return Redirect("/Announcements");
+            return View();
         }
 
         //
@@ -149,7 +149,7 @@ namespace NETboard.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Register(RegisterViewModel model)
         {
-            return Redirect("/Announcements");
+            
             if (ModelState.IsValid)
             {
                 var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
@@ -178,7 +178,7 @@ namespace NETboard.Controllers
         [AllowAnonymous]
         public async Task<ActionResult> ConfirmEmail(string userId, string code)
         {
-            return Redirect("/Announcements");
+            
             if (userId == null || code == null)
             {
                 return View("Error");
@@ -192,7 +192,7 @@ namespace NETboard.Controllers
         [AllowAnonymous]
         public ActionResult ForgotPassword()
         {
-            return Redirect("/Announcements");
+            return View();
         }
 
         //
@@ -202,7 +202,7 @@ namespace NETboard.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ForgotPassword(ForgotPasswordViewModel model)
         {
-            return Redirect("/Announcements");
+    
             if (ModelState.IsValid)
             {
                 var user = await UserManager.FindByNameAsync(model.Email);
@@ -229,7 +229,7 @@ namespace NETboard.Controllers
         [AllowAnonymous]
         public ActionResult ForgotPasswordConfirmation()
         {
-            return Redirect("/Announcements");
+            return View(); ;
         }
 
         //
@@ -237,7 +237,7 @@ namespace NETboard.Controllers
         [AllowAnonymous]
         public ActionResult ResetPassword(string code)
         {
-            return Redirect("/Announcements");
+            return code == null ? View("Error") : View();
         }
 
         //
@@ -247,7 +247,7 @@ namespace NETboard.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> ResetPassword(ResetPasswordViewModel model)
         {
-            return Redirect("/Announcements");
+            
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -272,7 +272,7 @@ namespace NETboard.Controllers
         [AllowAnonymous]
         public ActionResult ResetPasswordConfirmation()
         {
-            return Redirect("/Announcements");
+            return View();
         }
 
         //
